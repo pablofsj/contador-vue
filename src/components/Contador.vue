@@ -14,7 +14,7 @@
         <br><br>
       </div>
       <div class="col-sm-12">
-        <h2>Clicks Totales: <span>{{clicksTotales}}</span></h2>
+        <h2>Clicks Totales: <span>{{count}}</span></h2>
       </div>
     </div>
   </div>
@@ -24,19 +24,20 @@
 <script>
 export default {
   name:'Contador',
-  data:function() {
-    return {
-      clicksTotales:0
+  computed: {
+    count() {
+      return this.$store.state.count
     }
   },
+
   methods: {
     sumarClicks: function(){
-      this.clicksTotales++;
+      this.$store.commit('increment')
 
     },
 
     reiniciarClicks: function(){
-      this.clicksTotales=0;
+      this.$store.commit('decrement')
 
     }
 
